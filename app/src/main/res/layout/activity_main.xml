@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="MediaRecorder:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StartRecord"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StopRecord"
+        android:textAllCaps="false"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="AudioRecorder:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_start1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StartRecord"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_stop1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StopRecord"
+        android:textAllCaps="false"
+        />
+</LinearLayout>
