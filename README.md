@@ -39,6 +39,7 @@ public void startRecord(String filepath) {
 }
 ```
 ##### 停止录制
+```
 public void stopRecord() {
         if (mMediaRecorder != null && isRecording) {
             //停止录制
@@ -49,12 +50,12 @@ public void stopRecord() {
             isRecording = false;
         }
     }
-
+```
 ##### 录制监听
 * 录制错误监听：MediaRecorder.OnErrorListener 
-
+```
 onError(MediaRecorder mr, int what, int extra)
-
+```
 MEDIA_RECORDER_ERROR_UNKNOWN：未知错误
 MEDIA_ERROR_SERVER_DIED：媒体服务卡死，在这种情况下，应用程序必须释放MediaRecorder对象并实例化一个新对象
 * 录制警告信息监听：MediaRecorder.OnInfoListener	
