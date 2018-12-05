@@ -16,7 +16,8 @@
 * Android 9(API级别28)或更高,应用程序在后台运行不能访问麦克风
 #### 4.使用：
 ##### 开始录制
-  ```public void startRecord(String filepath) {
+```
+public void startRecord(String filepath) {
         Log.v(TAG, "startRecord startRecord");
         Log.v(TAG, "file path:" + filepath);
         //如果正在录制，就返回了
@@ -35,9 +36,10 @@
         } catch (Exception e) {
             Log.v(TAG, "startRecord record fail:" + e.toString());
         }
-}```
+}
+```
 ##### 停止录制
-  ```public void stopRecord() {
+public void stopRecord() {
         if (mMediaRecorder != null && isRecording) {
             //停止录制
             mMediaRecorder.stop();
@@ -46,10 +48,13 @@
             //mMediaRecorder.release();注意：这个对象不能再次被使用，如果此次再次录制，就会报错
             isRecording = false;
         }
-    }```
+    }
+
 ##### 录制监听
 * 录制错误监听：MediaRecorder.OnErrorListener 
-		```onError(MediaRecorder mr, int what, int extra)```
+
+onError(MediaRecorder mr, int what, int extra)
+
 MEDIA_RECORDER_ERROR_UNKNOWN：未知错误
 MEDIA_ERROR_SERVER_DIED：媒体服务卡死，在这种情况下，应用程序必须释放MediaRecorder对象并实例化一个新对象
 * 录制警告信息监听：MediaRecorder.OnInfoListener	
