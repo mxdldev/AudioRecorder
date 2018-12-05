@@ -102,7 +102,7 @@ public class SuperAudioManager {
         // 停止录制，释放资源
         if (mAudioRecord != null && isRecording) {
             mAudioRecord.stop();
-            //mAudioRecord.release();这个不能调用，如果此次再次录制，就会报错
+            //mAudioRecord.release();注意：这个对象不能再次被使用，如果此次再次录制，就会报错
             isRecording = false;
 
         }

@@ -64,7 +64,8 @@ public class SuperMediaManager {
             //停止录制
             mMediaRecorder.stop();
             //重新开始
-            mMediaRecorder.reset();
+            mMediaRecorder.reset();//注意：可以通过返回setAudioSource（）步骤来重用该对象
+            //mMediaRecorder.release();注意：这个对象不能再次被使用，如果此次再次录制，就会报错
             isRecording = false;
         }
     }
