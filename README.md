@@ -15,6 +15,20 @@
 ```<uses-permission android:name="android.permission.RECORD_AUDIO" />```
 * Android 9(API级别28)或更高,应用程序在后台运行不能访问麦克风
 #### 4.使用：
+##### 初始化
+```
+ public SuperMediaManager(Context context) {
+        mMediaRecorder = new MediaRecorder();
+        //设置音频的来源
+        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        //设置音频的输出格式
+        mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);//设置输出文件的格式
+        //设置音频文件的编码
+        mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);//设置音频文件的编码
+
+        mMediaPlayer = new MediaPlayer();
+    }
+```
 ##### 开始录制
 ```
 public void startRecord(String filepath) {
@@ -56,16 +70,41 @@ public void stopRecord() {
 ```
 onError(MediaRecorder mr, int what, int extra)
 ```
-MEDIA_RECORDER_ERROR_UNKNOWN：未知错误
+MEDIA_RECORDER_ERROR_UNKNOWN：未知错误 
 MEDIA_ERROR_SERVER_DIED：媒体服务卡死，在这种情况下，应用程序必须释放MediaRecorder对象并实例化一个新对象
 * 录制警告信息监听：MediaRecorder.OnInfoListener	
+```
 onInfo(MediaRecorder mr, int what, int extra)	
-MediaRecorder.MEDIA_RECORDER_INFO_UNKNOWN：未知的错误
+```
+MediaRecorder.MEDIA_RECORDER_INFO_UNKNOWN：未知的错误  
 MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED：录制超时了
 MediaRecorder.MEDIA_RECORDER_INFO_MAX_FILESIZE_REACHED：录制文件超过指定大小了，需要setNextOutputFile(File)指定一个新的文件进行存储
 		
 ##### 播放
-
+```
+public void play(String filepath) {
+        try {
+            //如果正在播放，然后在播放其他文件就直接崩溃了
+            if(mMediaPlayer.isPlaying()){
+                return;
+            }
+            //设置数据源
+            mMediaPlayer.setDataSource(filepath);
+            //这个准备工作必须要做
+            mMediaPlayer.prepare();
+            mMediaPlayer.start();
+            mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    //播放完毕再重置一下状态，下次播放可以再次使用
+                    mp.reset();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+```
 录制状态图：
 
 ### AudioRecoder：
